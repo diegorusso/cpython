@@ -118,10 +118,8 @@ mark_executable(unsigned char *memory, size_t size)
     int failed = 0;
     __builtin___clear_cache((char *)memory, (char *)memory + size);
     if (pthread_jit_write_protect_supported_np()) {
-        printf("pthread supported\n");
         pthread_jit_write_protect_np(1);
     } else {
-        printf("pthread NOT supported\n");
         failed = mprotect(memory, size, PROT_EXEC | PROT_READ);
     }
 #else
