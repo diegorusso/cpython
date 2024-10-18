@@ -59,7 +59,8 @@ jit_alloc(size_t size)
 #elif defined(__APPLE__)
     int flags = MAP_ANONYMOUS | MAP_PRIVATE;
     int prot = PROT_READ | PROT_WRITE;
-    if (pthread_jit_write_protect_supported_np()) {
+    //if (pthread_jit_write_protect_supported_np()) {
+    if (1) {
         flags |= MAP_JIT;
         prot |= PROT_EXEC;
     }
@@ -117,7 +118,8 @@ mark_executable(unsigned char *memory, size_t size)
 #elif defined(__APPLE__)
     int failed = 0;
     __builtin___clear_cache((char *)memory, (char *)memory + size);
-    if (pthread_jit_write_protect_supported_np()) {
+    //if (pthread_jit_write_protect_supported_np()) {
+    if (1) {
         pthread_jit_write_protect_np(1);
     } else {
         failed = mprotect(memory, size, PROT_EXEC | PROT_READ);
