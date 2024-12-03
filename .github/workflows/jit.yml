@@ -134,9 +134,9 @@ jobs:
           - false
         is-fork:  # only used for the exclusion trick
         - ${{ github.repository_owner != 'python' }}
-        exclude:
-        - os: ubuntu-24.04-aarch64
-          is-fork: true
+          #exclude:
+          #        - os: ubuntu-24.04-aarch64
+          #is-fork: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -144,6 +144,7 @@ jobs:
           python-version: '3.11'
 
       - name: ${{ runner.os }} (${{ runner.arch }})
+        if: matrix.is-fork != 'false'
         run: |
           sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" ./llvm.sh ${{ env.llvm }}
           export PATH="$(llvm-config-${{ env.llvm }} --bindir):$PATH"
