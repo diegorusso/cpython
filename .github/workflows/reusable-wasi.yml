@@ -1,4 +1,4 @@
-name: Reusable WASI
+name: Reusable WASII
 
 on:
   workflow_call:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 60
     env:
-      WASMTIME_VERSION: 38.0.2
+      WASMTIME_VERSION: 38.0.3
       WASI_SDK_VERSION: 25
       WASI_SDK_PATH: /opt/wasi-sdk
       CROSS_BUILD_PYTHON: cross-build/build
