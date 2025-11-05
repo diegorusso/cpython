@@ -1,4 +1,4 @@
-name: Reusable WASI
+name: Reusable WASII
 
 on:
   workflow_call:
